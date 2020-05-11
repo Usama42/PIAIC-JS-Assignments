@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <title>Todo</title>
+        <style>
+h1{
+    
+    font-size: 10;
+    font-size: 43px;
+    font-family: monospace;
+    color: cornflowerblue;
+    margin-left: 47px
+
+}
+li{
+    margin-bottom: 30px;
+}
+input#task{
+
+    
+    margin-left: 53px;
+    background-color: darkturquoise;
+    border: darkolivegreen;
+    height: 32px;
+    width: 226px
+}
+button#d {
+    background-color: deepskyblue;
+    margin-left: 384px;
+    border: aliceblue;
+}
+input#btn{
+    
+    width: 85px;
+    height: 37px;
+    background-color: deepskyblue;
+    color: cornsilk
+}
+ul#list {
+    margin-left: 43px;
+    margin-top: 43px;
+    font-size: 30px;
+    font-family: inherit;
+    
+    width: 683px;
+    border-style: double;
+    border-color: aquamarine;
+}
+button#d{
+          width: 88px;height: 27px;;
+      }  
+        li {
+    margin-bottom: 15px;
+}
+button {
+    margin-left: 68px;
+}
+ul#list {
+    list-style-type: none;
+}
+       h3{
+           margin-bottom: 208px;
+           text-align: center;
+       } 
+        </style>
+    </head>
+    <body>
+        <h1>TO DO APP</h1>
+        <input id="task" type="text" >
+        <input onclick="add()" id="btn" type="button" value="ADD">
+        <div>
+            <ul id="list">
+                
+            </ul>
+            <h3>(c) Usama Bin Zahid</h3>
+        </div>
+    </body>
+
+
+    <script>
+        localStorage.tasks=JSON.stringify([]);
+        function add(){
+
+    var t = document.querySelector("#task").value;
+    if (t!=""){
+
+    let taskArr=JSON.parse(localStorage.tasks);
+    taskArr.push(t);
+    localStorage.tasks=JSON.stringify(taskArr);
+    document.querySelector("#task").value="";
+    update();
+    
+
+        }
+  else{
+      alert("Required!");
+  }
+}
+    
+
+        
+
+   function update(){
+   let taskArr=JSON.parse(localStorage.tasks);
+
+    let ul = document.getElementById("list");
+    let html="";
+    let length=taskArr.length;
+    for (let i=0;i<length; i++){
+    html += '<li id="i">  '+taskArr[i]+' <span onclick="removeItem(this)"> <button id="d">Remove</button></span> </li>'
+    ul.innerHTML=html;
+    
+    }}
+
+function removeItem(obj){
+ console.log(obj);   
+ let index=obj.parentElement.id;
+ let taskArr=JSON.parse(localStorage.tasks);
+ taskArr.splice(index,1);
+ localStorage.tasks=JSON.stringify(taskArr);
+ update();
+ 
+}
+</script>
+    
+</html>
